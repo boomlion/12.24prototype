@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    function Animal() {
+      this.name = name;
+      this.say = function () {
+        console.log(this.name + '会叫')
+      }
+
+
+    }
+
+    Animal.prototype.eat = function () {
+      console.log(this.name + '在吃')
+    }
+    // function Cat(height) {
+    //   this.height = height;
+    // }
+
+    //原型链方法
+    // Cat.prototype = new Animal();
+    // var cat = new Cat(18);
+    // cat.name = '李佳乐';
+    // cat.est();
+
+    //构造继承
+    // function Cat(height) {
+    //   //在构造函数里面进行call借用，这样很多东西都会在里面了
+    //   Animal.call(this);
+    //   this.height = height;
+    // }
+    // var cat = new Cat(18);
+    // cat.name = '李佳乐';
+    // //这个时候animal的原型上面的借用不到
+    // cat.say();
+
+    //实例继承
+
+    // function Cat(height) {
+    //   var animal=new Animal();
+    //   this.height = height;
+    //   return animal
+    // }
+    //实例是父亲的实例，并不是自己的
+
+
+    //遍历继承
+    // function Cat() {
+    //   var animal = new Animal();
+    //   for (var key in animal) {
+    //     Cat.prototype[key] = animal[key];
+
+    //   }
+    // }
+    //占用内存大  不可枚举的无法得到
+    // var cat = new Cat(18);
+    // cat.name = '李佳乐';
+    // cat.eat();
+
+
+    //组合继承
+    // function Cat() {
+    //   Animal.call(this);
+
+    // }
+
+    // Cat.prototype = new Animal();
+    // var cat = new Cat(18);
+    // cat.name = '李佳乐';
+    // cat.eat();
+
+//寄生式混合继承
+function Cat(){
+
+Animal.call(this)
+
+}
+
+(function(){
+  var intan=function(){};
+
+  intan.prototype= new Animal();
+    Cat.prototype=new intan();
+})()
+
+    // Cat.prototype = new Animal();
+    var cat = new Cat(18);
+    cat.name = '李佳乐';
+    cat.eat();
+  </script>
+</body>
+
+</html>
